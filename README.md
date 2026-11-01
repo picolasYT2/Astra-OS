@@ -7,10 +7,6 @@ Windows y para jugar. Escritorio propio y todo en español.
 
 *Como Windows, pero mejor.*
 
-> **Basado en Quantum Linux.** Astra OS es una versión derivada de
-> [Quantum Linux](https://github.com/QuantumLinux-arch/quantum-linux) (GPL-3.0-or-later).
-> Los enlaces de comunidad, repositorio de paquetes y descargas que siguen apuntando a
-> Quantum Linux son del proyecto base.
 
 > **English:** Astra OS (designed by Picolas) is an Arch Linux based distribution for gamers and
 > people switching from Windows, derived from Quantum Linux. It ships its own desktop (written in
