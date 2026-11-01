@@ -7,13 +7,14 @@
 
 pkgname=quantum-wayfire-decor
 pkgver=0.11.0
-pkgrel=4
+pkgrel=5
 pkgdesc="Decoración de ventanas de Astra OS para Wayfire"
 arch=('x86_64')
 url="https://github.com/quantum-linux"
 license=('MIT')
 depends=('wayfire' 'cairo' 'pango')
-makedepends=('glm' 'pkgconf')
+# wlroots-full.hpp incluye wlr/render/vulkan.h, que necesita estas cabeceras.
+makedepends=('glm' 'pkgconf' 'vulkan-headers')
 
 _src="$startdir/src"
 
