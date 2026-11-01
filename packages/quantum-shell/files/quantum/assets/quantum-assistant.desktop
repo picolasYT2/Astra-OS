@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=Astri
+GenericName=Asistente
+Comment=Tu asistente: abre e instala apps, cambia ajustes y responde tus dudas
+Exec=qs -c quantum ipc call shell ai
+Icon=quantum-assistant
+Terminal=false
+Type=Application
+Categories=Utility;
+Keywords=quarki;ia;ai;asistente;chat;ayuda;ollama;instalar;

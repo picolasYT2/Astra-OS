@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FF8A5B"/><stop offset="1" stop-color="#F0506E"/></linearGradient>
+  <linearGradient id="hl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FFFFFF" stop-opacity="0.18"/><stop offset="0.5" stop-color="#FFFFFF" stop-opacity="0"/></linearGradient>
+  <filter id="sh" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="6" stdDeviation="7" flood-color="#000" flood-opacity="0.22"/></filter>
+</defs>
+<path d="M128 8C40 8 8 40 8 128s32 120 120 120 120-32 120-120S216 8 128 8z" fill="url(#bg)"/><path d="M128 8C40 8 8 40 8 128s32 120 120 120 120-32 120-120S216 8 128 8z" fill="url(#hl)"/><g filter="url(#sh)">
+  <path d="M92 98v-10a36 36 0 0 1 72 0v10" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round"/>
+  <path d="M64 96h128l-8 104a16 16 0 0 1-16 15H88a16 16 0 0 1-16-15z" fill="#FFFFFF"/>
+</g>
+<path d="M128 124v52M106 156l22 22 22-22" fill="none" stroke="#F0506E" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/></svg>

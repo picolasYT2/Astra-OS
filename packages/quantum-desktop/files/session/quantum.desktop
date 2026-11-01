@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Astra
+Comment=El escritorio de Astra OS
+Exec=/usr/bin/quantum-session
+TryExec=/usr/bin/quantum-session
+Type=Application
+DesktopNames=Astra;wlroots

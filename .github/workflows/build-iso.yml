@@ -1,0 +1,64 @@
+name: Construir ISO de Astra OS
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ["v*"]
+
+jobs:
+  iso:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 360
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Liberar espacio en el runner
+        run: |
+          sudo rm -rf /usr/share/dotnet /usr/local/lib/android /opt/ghc /opt/hostedtoolcache/CodeQL /usr/local/share/boost
+          sudo docker image prune --all --force >/dev/null || true
+          df -h /
+
+      - name: Construir el ISO (Arch Linux en Docker)
+        run: |
+          docker run --rm --privileged \
+            -v "$PWD:/work" -w /work \
+            archlinux:latest bash scripts/ci-build.sh
+
+      - name: Resumen
+        run: |
+          ls -lh out
+          cat out/*.sha256
+
+      - name: Subir el ISO como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: astra-os-iso
+          path: |
+            out/*.iso
+            out/*.sha256
+          compression-level: 0
+          retention-days: 14
+
+      # Los archivos de una Release no pueden pasar de 2 GiB: si el ISO es más grande se parte en trozos
+      - name: Preparar archivos para la Release
+        if: startsWith(github.ref, 'refs/tags/')
+        run: |
+          mkdir release
+          for iso in out/*.iso; do
+            size=$(stat -c %s "$iso")
+            if [ "$size" -gt 2000000000 ]; then
+              split -b 1900M -d "$iso" "release/$(basename "$iso").part"
+              echo "Para juntarlo: cat $(basename "$iso").part* > $(basename "$iso")" > release/COMO-JUNTAR.txt
+            else
+              cp "$iso" release/
+            fi
+          done
+          cp out/*.sha256 release/
+
+      - name: Publicar la Release
+        if: startsWith(github.ref, 'refs/tags/')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: release/*
